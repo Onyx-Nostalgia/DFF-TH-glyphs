@@ -1,6 +1,6 @@
 # Double Fine Font Parser
 
-These scripts complement the [psychonauts-translator](https://github.com/TrupSteam/psychonauts-translator) project.
+These scripts complement the [psychonauts-translator](https://github.com/TrupSteam/psychonauts-translator) project. 
 They are needed to change the fonts built into the game.
 
 ## Unpack DFF
@@ -18,7 +18,7 @@ For example:
         "0": 0,
 ```
 
-This means that the 0x00 symbol corresponds to the first image in the `coord_arr` array.
+This means that the ASCII symbol 0x00 corresponds to the first image in the `coord_arr` array.
 
 ```
 "coord_arr": {
