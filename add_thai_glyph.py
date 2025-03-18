@@ -104,7 +104,7 @@ def append_thai_glyphs(
             fill="white",
             anchor="lt",
             spacing=0,
-        )   
+        )
 
         draw_hide_dot(
             glyph_draw,
@@ -117,11 +117,11 @@ def append_thai_glyphs(
             draw_char,
             font,
         )
-        
+
         if adjust[char].get("rotate"):
             glyph = glyph.rotate(adjust[char]["rotate"], expand=1)
-            gw,_ = glyph.size
-            img.paste(glyph, (int(x_start - gw//4), int(y_start)), glyph)
+            gw, _ = glyph.size
+            img.paste(glyph, (int(x_start - gw // 4), int(y_start)), glyph)
         else:
             img.paste(glyph, (int(x_start), int(y_start)), glyph)
 
@@ -145,7 +145,7 @@ def append_thai_glyphs(
         print("WARNING: Game Maybe not support !")
 
     img.show()
-    
+
     img.save(output_path)
     update_json_file(json_path, new_json_path, glyph_coordinates, adjust)
 
@@ -266,11 +266,22 @@ def add_thai_glyph(bmp_path, json_path, font_path, font_size=32, is_show_box=Fal
 
 
 if __name__ == "__main__":
-    arg_parser = argparse.ArgumentParser(description="Add Thai Glyph to BMP & JSON")
+    arg_parser = argparse.ArgumentParser(
+        description="""
+Add Thai Glyph to BMP & JSON: ex.
+
+* python add_thai_glyph.py data/English/bagel_lin.dff.bmp  data/English/bagel_lin.dff.json Sriracha-Regular.ttf --font-size 26
+
+* python add_thai_glyph.py data/English/bagel_lin.dff.bmp  data/English/bagel_lin.dff.json Sriracha-Regular.ttf --font-size 26 --show-box
+
+File will save in data/Thai/*_with_thai_glyphs.json & data/Thai/*_with_thai_glyphs.bmp
+                                  
+"""
+    )
     arg_parser.add_argument("bmp_path")
     arg_parser.add_argument("json_path")
     arg_parser.add_argument("font_path")
-    arg_parser.add_argument("--font-size", type=int, default=30)
+    arg_parser.add_argument("--font-size", type=int, default=26)
     arg_parser.add_argument("--show-box", action="store_true", default=False)
     args = arg_parser.parse_args()
     add_thai_glyph(
