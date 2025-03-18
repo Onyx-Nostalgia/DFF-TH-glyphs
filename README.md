@@ -65,7 +65,7 @@ The resulting image will look like this
 
 ## 📝 Thai glyph config File
 
-Since each font's characters may not align perfectly, you need this file to adjust the configuration of each character. In some cases, you may also need to adjust the character size in the config.
+Since each font's characters may not align perfectly, you need this file to adjust the configuration of each character. In some cases, When changing only the font size while retaining the same font, you may need to edit config as well.
 
 [config/sriracha-regular.json](https://github.com/Onyx-Nostalgia/DFF-TH-glyphs/blob/main/config/sriracha-regular.json)
 
