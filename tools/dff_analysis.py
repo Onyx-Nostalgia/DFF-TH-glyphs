@@ -1,8 +1,13 @@
 import argparse
 import os
 import struct
+import sys
 
 from tabulate import tabulate
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(script_dir, os.pardir))
+sys.path.append(project_root)
 
 from unpack_font import FileReader, read_binary
 
@@ -24,7 +29,7 @@ def display_image(data, dimensions=(), offset=None, output_file=None):
         folder_path = os.path.dirname(output_file)
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
-        with open(output_file + "_img.txt", "w") as f:
+        with open(output_file, "w") as f:
             f.write("\n".join(hex_lines))
 
     offset[0] = _offset
@@ -129,7 +134,12 @@ def dff_analysis(path):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="display DFF file structure table")
+    parser = argparse.ArgumentParser(description=""" 
+display DFF file structure table: ex.
+
+python tools/dff_analysis.py data/English/RazNotebook_lin.dff
+ 
+""")
     parser.add_argument("path", type=str, help="(.dff) DFF file path")
     args = parser.parse_args()
 

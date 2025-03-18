@@ -55,7 +55,7 @@ if __name__ == "__main__":
     description = """
     display json mapping 
     ex: 
-    python display_json_mapping.py RazNotebook_lin.json --mode coord
+    tools/display_json_mapping.py data/English/RazNotebook_lin.dff.json --mode coord
     """
     arg_parser = argparse.ArgumentParser(description=description)
     arg_parser.add_argument("file_path", type=str, help="Path to the JSON file")
