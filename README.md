@@ -2,6 +2,7 @@
 <h1>🧠 DoubleFine Font Parser (add Thai glyphs) 🧠</h1>
 
 <img src="http://ForTheBadge.com/images/badges/made-with-python.svg"/>
+<img src="https://img.shields.io/badge/python-3.10%2B-blue.svg?style=for-the-badge&logo=python&logoColor=white"/>
 <br>
 <img src="https://raw.githubusercontent.com/Onyx-Nostalgia/DFF-TH-glyphs/refs/heads/main/data/Thai/bagel_lin_with_thai_glyphs.bmp"/>
 
