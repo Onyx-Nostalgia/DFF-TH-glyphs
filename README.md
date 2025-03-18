@@ -2,68 +2,71 @@
 <h1>🧠 DoubleFine Font Parser (add Thai glyphs) 🧠</h1>
 
 <img src="http://ForTheBadge.com/images/badges/made-with-python.svg"/>
+<br>
+<img src="https://raw.githubusercontent.com/Onyx-Nostalgia/DFF-TH-glyphs/refs/heads/main/data/Thai/bagel_lin_with_thai_glyphs.bmp"/>
 
-<img src="data/Thai/bagel_lin_with_thai_glyphs.bmp"/>
-
-<a href="README.md">EN</a>
- | <b>TH</b>
+<b>EN</b>
+ | <a href="https://github.com/Onyx-Nostalgia/DFF-TH-glyphs/blob/main/docs/README-TH.md">TH</a>
 
 </div>
 
-Project ต่อยอดจาก [TrupSteam/DFF_Parser](https://github.com/TrupSteam/DFF_Parser) โดยจะเป็นการแก้ไฟล์ BMP และไฟล์ JSON ที่ได้จากการ unpack_font โดยจะเพิ่มตัวอักษรของภาษาไทยเข้าไป
+---
 
-## 🚀 ขั้นตอนในการทำตั้งแต่เริ่ม
-1. 🔍 หาเลือก Font ที่ต้องการจะนำมาใช้ในเกม ในที่นี้จะใช้ Font: `Sriracha-Regular.ttf` จาก [_Google Font_](https://fonts.google.com/specimen/Sriracha?preview.text=%E0%B9%80%E0%B8%81%E0%B8%A1%E0%B9%84%E0%B8%8B%E0%B9%82%E0%B8%84%E0%B8%99%E0%B8%AD%E0%B8%97%20%E0%B8%8B%E0%B8%B2%E0%B8%8A%E0%B9%88%E0%B8%B2%20%E0%B9%84%E0%B8%99%E0%B8%99%E0%B9%8C%20%E0%B9%82%E0%B8%84%E0%B9%89%E0%B8%8A%20%E0%B9%81%E0%B8%84%E0%B8%A1%E0%B8%9B%E0%B9%8C%20%E0%B9%80%E0%B8%A3%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B9%80%E0%B8%81%E0%B8%A1%20%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B8%9A%20%E0%B8%9E%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%88%E0%B8%B4%E0%B8%95)
-2. 🛠️ สร้างไฟล์ config ตัวอักษรไทย เพื่อกำหนด config ของตัวอักษรไทย เนื่องจากแต่ละตัวอักษรอาจไม่ได้อยู่ในตำแหน่งที่ต้องการ จึงต้องมีการปรับค่า x, y เสริมเข้าไป
+This project builds upon [TrupSteam/DFF_Parser](https://github.com/TrupSteam/DFF_Parser) by modifying BMP and JSON files obtained from unpack_font to include Thai characters.
+
+## 🚀 Steps of my journey
+1. 🔍 Select the desired font to use in the game. In this case, the font `Sriracha-Regular.ttf` from [_Google Font_](https://fonts.google.com/specimen/Sriracha?preview.text=%E0%B9%80%E0%B8%81%E0%B8%A1%E0%B9%84%E0%B8%8B%E0%B9%82%E0%B8%84%E0%B8%99%E0%B8%AD%E0%B8%97%20%E0%B8%8B%E0%B8%B2%E0%B8%8A%E0%B9%88%E0%B8%B2%20%E0%B9%84%E0%B8%99%E0%B8%99%E0%B9%8C%20%E0%B9%82%E0%B8%84%E0%B9%89%E0%B8%8A%20%E0%B9%81%E0%B8%84%E0%B8%A1%E0%B8%9B%E0%B9%8C%20%E0%B9%80%E0%B8%A3%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B9%80%E0%B8%81%E0%B8%A1%20%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B8%9A%20%E0%B8%9E%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%88%E0%B8%B4%E0%B8%95)
+2. 🛠️ Create a Thai character config file to define the configuration of Thai characters, as each character may not be in the desired position and may require adjustments to x, y values.
 ```bash
 python tools/create_thai_glyph_config.py Sriracha-Regular.ttf
 ```
-3. ✏️ เพิ่มตัวอักษรไทยในไฟล์ BMP และ JSON ที่มีอยู่ ขั้นตอนนี้อาจต้องปรับตำแหน่งตัวอักษรให้เหมาะสม
+3. ✏️ Add Thai characters to the existing BMP and JSON files. This step may require adjusting the character positions to fit properly.
 ```bash
 python add_thai_glyph.py data/English/bagel_lin.dff.bmp  data/English/bagel_lin.dff.json Sriracha-Regular.ttf
 ```
-และในกรณีเดียวกันกับ `RazNotebook_lin`   
+Similarly for `RazNotebook_lin`
 ```bash
 python add_thai_glyph.py data/English/RazNotebook_lin.dff.bmp  data/English/RazNotebook_lin.dff.json Sriracha-Regular.ttf
 ```
-4. 📦 เมื่อได้ไฟล์ BMP และ JSON ที่มีตัวอักษรไทยแล้ว `data/Thai/***_with_thai_glyphs` นำมา pack เป็น DFF ด้วยคำสั่ง
+4. 📦 Once the BMP and JSON files with Thai characters are ready, pack them into DFF using the command
 ```bash
 script/pack_font.sh
 ``` 
 > [!Important]
-> * ❗ อย่าลืมแก้ไข `/path/of/file/Games/psychonauts/` ใน [[script/pack_font.sh](script/pack_font.sh)] ให้ตรงกับ path เกมในเครื่องของคุณ
-> * 💾 ควรสำรองไฟล์ DFF ของเกมไว้ก่อน
+> * ❗ Don't forget to update the `/path/of/file/Games/psychonauts/` in [[script/pack_font.sh](https://github.com/Onyx-Nostalgia/DFF-TH-glyphs/tree/main/script/pack_font.sh)] to match the game path on your machine.
+> * 💾 It's recommended to backup the game's DFF files before proceeding.
 
 > [!NOTE]
-> หากมีปัญหา permission ในการใช้งาน ลองใช้ `chmod +x script/*` และรันคำสั่งอีกครั้ง
+> If you encounter permission issues, try using `chmod +x script/*` and rerun the command.
 
-5. 🌐 แปลไฟล์บทสนทนาต่างๆ ของเกมให้เป็นภาษาไทยโดยใช้ [psychonauts-TH-translation](https://github.com/Onyx-Nostalgia/psychonauts-TH-translation)
-6. 🕹️ เข้าเกมเพื่อทดสอบ
+5. 🌐 Translate the game's dialogue files to Thai using [psychonauts-TH-translation](https://github.com/Onyx-Nostalgia/psychonauts-TH-translation)
+6. 🕹️ Launch the game to test.
 
-## 🖼️ เพิ่มตัวอักษรไทยในไฟล์ BMP และ JSON
-ตัวอย่างคำสั่ง 
+## 🖼️ Adding Thai characters to BMP and JSON files
+Example command
 
 ```bash
 python add_thai_glyph.py data/English/bagel_lin.dff.bmp data/English/bagel_lin.dff.json Sriracha-Regular.ttf
 ```
 ### --font-size
-กำหนดขนาด Font ได้ โดยใช้ `--font-size` Default คือ **26**
+Specify the font size using `--font-size`. The default is **26**.
 ```bash
 python add_thai_glyph.py data/English/bagel_lin.dff.bmp data/English/bagel_lin.dff.json Sriracha-Regular.ttf --font-size 26
 ```
 ### --show-box 
-แสดงกรอบ Bounding Box ของแต่ละตัวอักษรได้โดยใช้ `--show-box` มีประโยชน์ในการวางตำแหน่งตัวอักษรให้ตรงกับตำแหน่ง
+Display the bounding box of each character using `--show-box`. This is useful for positioning characters accurately.
 ```bash
 python add_thai_glyph.py data/English/bagel_lin.dff.bmp data/English/bagel_lin.dff.json Sriracha-Regular.ttf --show-box 
 ```
-ภาพที่ได้จะเป็นแบบนี้
-![image](data/Thai/bagel_lin_with_thai_glyphs_show_box.bmp)
+The resulting image will look like this
+
+![image](https://raw.githubusercontent.com/Onyx-Nostalgia/DFF-TH-glyphs/refs/heads/main/data/Thai/bagel_lin_with_thai_glyphs_show_box.bmp)
 
 ## 📝 Thai glyph config File
 
-เนื่องจากตัวอักษรของแต่ละ Font จะไม่ค่อยตรงกรอบและตำแหน่งที่ต้องการ ดังนั้นคุณจึงต้องมีไฟล์นี้ในการปรับ config ของแต่ละตัวอักษร และในบางกรณีการปรับขนาดตัวอักษรก็อาจต้องปรับค่าใน Config พวกนี้ด้วย
+Since each font's characters may not align perfectly, you need this file to adjust the configuration of each character. In some cases, you may also need to adjust the character size in the config.
 
-[config/sriracha-regular.json](config/sriracha-regular.json)
+[config/sriracha-regular.json](https://github.com/Onyx-Nostalgia/DFF-TH-glyphs/blob/main/config/sriracha-regular.json)
 
 ```json
 {
@@ -78,42 +81,42 @@ python add_thai_glyph.py data/English/bagel_lin.dff.bmp data/English/bagel_lin.d
 ```
 |                     |                                                           |
 | ------------------- | --------------------------------------------------------- |
-| **adjust_x**        | เลื่อนเสริมตำแหน่งตามแนวแกน x ค่าสูงจะเลื่อนไปทางขวา               |
-| **adjust_y**        | เลื่อนเสริมตำแหน่งตามแนวแกน y ค่าสูงจะเลื่อนลงไปด้านล่าง             |
-| **vertical_offset** | ปรับตำแหน่งความสูงของตัวอักษรในเกม ค่าสูงจะยิ่งทำให้ตัวอักษรในเกมอยู่สูงขึ้น |
-| **rotate**          | เอียงตัวอักษรตามองศาที่กำหนด                                    |
+| **adjust_x**        | Adjust the position along the x-axis. Higher values move to the right. |
+| **adjust_y**        | Adjust the position along the y-axis. Higher values move downwards. |
+| **vertical_offset** | Adjust the vertical position of the character in the game. Higher values move the character higher. |
+| **rotate**          | Rotate the character by the specified degrees.             |
 
-### สร้างไฟล์ด้วยคำสั่ง
+### Create the file using the command
 
-สามารถสร้างได้โดย
+You can create it by
 ```bash
 python tools/create_thai_glyph_config.py Sriracha-Regular.ttf
 ```
 #### --replace
-กรณีต้องการสร้างไฟล์ใหม่ทับไฟล์ที่มีอยู่ ให้ใช้ `-w` หรือ `--overwrite` หรือ `--replace`
+To overwrite an existing file, use `-w`, `--overwrite`, or `--replace`.
 ```bash
 python tools/create_thai_glyph_config.py Sriracha-Regular.ttf -w
 ```
 
-## 🛠️ Tools เพิ่มเติม
+## 🛠️ Additional Tools
 
 ### DFF analysis
-แสดงโครงสร้างไฟล์ DFF มีประโยชน์ในการดูว่าข้อมูล Binary ตำแหน่งไหนเก็บข้อมูลเกี่ยวกับอะไรไว้
+Display the structure of the DFF file, useful for understanding which binary data corresponds to what information.
 
 ```bash
 python tools/dff_analysis.py data/English/RazNotebook_lin.dff
 ```
-ผลลัพธ์จะเก็บไว้ใน **_/docs/DFF binary structure/{DFF_FILENAME}_** 
+The results will be saved in **_/docs/DFF binary structure/{DFF_FILENAME}_** 
 
-เช่น
-[/docs/DFF binary structure/RazNotebook_lin](/docs/DFF%20binary%20structure/RazNotebook_lin/)
+For example
+[/docs/DFF binary structure/RazNotebook_lin](https://github.com/Onyx-Nostalgia/DFF-TH-glyphs/tree/main/docs/DFF%20binary%20structure/RazNotebook_lin)
 
 ### display json mapping
-กรณีต้องการทราบว่า Json ที่ได้จากการ unpack font เป็นตัวอักษรใด หรือ coord เชื่อมกับ ascii code ใด แบบให้ดูง่ายๆ
+To understand which character or coordinate corresponds to which ASCII code in the JSON file obtained from unpacking the font, use
 ```bash
 python tools/display_json_mapping.py data/English/RazNotebook_lin.dff.json --mode coord
 ```
-ผลลัพธ์ใน terminal
+The terminal output will be
 ```sh
 glyph_id='0': _a_ ascii_code=97 w=11 h=14 start_pos:(1,1) end_pos:(12, 15) base:(12,0)
 glyph_id='1': _b_ ascii_code=98 w=11 h=24 start_pos:(13,1) end_pos:(24, 25) base:(21,0)
@@ -124,9 +127,9 @@ glyph_id='171': _
 _ ascii_code=133 w=16 h=4 start_pos:(297,120) end_pos:(313, 124) base:(6,0)
 ```
 #### --mode
-mode ในการแสดงผลมี 2 mode คือ `coord` เป็นค่า default และ `ascii`
+There are two modes for displaying the results: `coord` (default) and `ascii`.
 
-`--mode ascii` จะให้ผลลัพธ์ดังนี้ (ascii_map จะมีค่า coord_arr ที่ default คือ  glyph_id=0 หรือ 'a')
+`--mode ascii` will produce the following output (ascii_map will have coord_arr with the default value of glyph_id=0 or 'a')
 ```sh
 ascii_code='0': _a_ glyph_id=0 w=11 h=14 start_pos:(1,1) end_pos:(12, 15) base:(12,0)
 ascii_code='1': _a_ glyph_id=0 w=11 h=14 start_pos:(1,1) end_pos:(12, 15) base:(12,0)
@@ -140,6 +143,6 @@ ascii_code='255': _a_ glyph_id=0 w=11 h=14 start_pos:(1,1) end_pos:(12, 15) base
 
 ```
 
-## 🥲 Limitation
-- เนื่องจากไม่มีค่า spacing ของตัวอักษรให้ปรับ ทำให้ตัวอักษรไทยในเกมจะแสดงผลออกมาไม่สวยงามนัก (1 ตัวอักษรจะแสดงออกมาเป็น 1 glyph ต่อๆ กัน) ดังนั้นพวกสระและวรรณยุกต์ ที่ควรจะอยู่ด้านบนหรือล่างพยัญชนะจะมาต่อข้างๆแทน 😭
-- หากคุณปรับขนาดตัวอักษรใหญ่เกินไปจนภาพ BMP ที่ได้เกิน **512 x 256 px** อาจส่งผลให้ตัวเกมไม่รองรับและใช้งานไม่ได้
+## 🥲 Limitations
+- Due to the lack of spacing adjustments for characters, Thai characters in the game may not display beautifully (each character will appear as a separate glyph). Therefore, vowels and tone marks that should be above or below consonants will appear next to them instead. 😭
+- If you enlarge the characters too much, causing the resulting BMP to exceed **512 x 256 px**, the game may not support and use it.
