@@ -2,17 +2,19 @@
 <h1>🧠 DoubleFine Font Parser (add Thai glyphs) 🧠</h1>
 
 <img src="http://ForTheBadge.com/images/badges/made-with-python.svg"/>
+<br>
+<img src="https://raw.githubusercontent.com/Onyx-Nostalgia/DFF-TH-glyphs/refs/heads/main/data/Thai/bagel_lin_with_thai_glyphs.bmp"/>
 
-<img src="data/Thai/bagel_lin_with_thai_glyphs.bmp"/>
-
-<a href="README.md">EN</a>
+<a href="https://github.com/Onyx-Nostalgia/DFF-TH-glyphs/blob/main/README.md">EN</a>
  | <b>TH</b>
 
 </div>
 
+---
+
 Project ต่อยอดจาก [TrupSteam/DFF_Parser](https://github.com/TrupSteam/DFF_Parser) โดยจะเป็นการแก้ไฟล์ BMP และไฟล์ JSON ที่ได้จากการ unpack_font โดยจะเพิ่มตัวอักษรของภาษาไทยเข้าไป
 
-## 🚀 ขั้นตอนในการทำตั้งแต่เริ่ม
+## 🚀 Step of my journey
 1. 🔍 หาเลือก Font ที่ต้องการจะนำมาใช้ในเกม ในที่นี้จะใช้ Font: `Sriracha-Regular.ttf` จาก [_Google Font_](https://fonts.google.com/specimen/Sriracha?preview.text=%E0%B9%80%E0%B8%81%E0%B8%A1%E0%B9%84%E0%B8%8B%E0%B9%82%E0%B8%84%E0%B8%99%E0%B8%AD%E0%B8%97%20%E0%B8%8B%E0%B8%B2%E0%B8%8A%E0%B9%88%E0%B8%B2%20%E0%B9%84%E0%B8%99%E0%B8%99%E0%B9%8C%20%E0%B9%82%E0%B8%84%E0%B9%89%E0%B8%8A%20%E0%B9%81%E0%B8%84%E0%B8%A1%E0%B8%9B%E0%B9%8C%20%E0%B9%80%E0%B8%A3%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B9%80%E0%B8%81%E0%B8%A1%20%E0%B8%AA%E0%B8%A7%E0%B8%B1%E0%B8%AA%E0%B8%94%E0%B8%B5%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B8%9A%20%E0%B8%9E%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%88%E0%B8%B4%E0%B8%95)
 2. 🛠️ สร้างไฟล์ config ตัวอักษรไทย เพื่อกำหนด config ของตัวอักษรไทย เนื่องจากแต่ละตัวอักษรอาจไม่ได้อยู่ในตำแหน่งที่ต้องการ จึงต้องมีการปรับค่า x, y เสริมเข้าไป
 ```bash
@@ -31,7 +33,7 @@ python add_thai_glyph.py data/English/RazNotebook_lin.dff.bmp  data/English/RazN
 script/pack_font.sh
 ``` 
 > [!Important]
-> * ❗ อย่าลืมแก้ไข `/path/of/file/Games/psychonauts/` ใน [[script/pack_font.sh](script/pack_font.sh)] ให้ตรงกับ path เกมในเครื่องของคุณ
+> * ❗ อย่าลืมแก้ไข `/path/of/file/Games/psychonauts/` ใน [[script/pack_font.sh](https://github.com/Onyx-Nostalgia/DFF-TH-glyphs/tree/main/script/pack_font.sh)] ให้ตรงกับ path เกมในเครื่องของคุณ
 > * 💾 ควรสำรองไฟล์ DFF ของเกมไว้ก่อน
 
 > [!NOTE]
@@ -57,13 +59,14 @@ python add_thai_glyph.py data/English/bagel_lin.dff.bmp data/English/bagel_lin.d
 python add_thai_glyph.py data/English/bagel_lin.dff.bmp data/English/bagel_lin.dff.json Sriracha-Regular.ttf --show-box 
 ```
 ภาพที่ได้จะเป็นแบบนี้
-![image](data/Thai/bagel_lin_with_thai_glyphs_show_box.bmp)
+
+![image](https://raw.githubusercontent.com/Onyx-Nostalgia/DFF-TH-glyphs/refs/heads/main/data/Thai/bagel_lin_with_thai_glyphs_show_box.bmp)
 
 ## 📝 Thai glyph config File
 
 เนื่องจากตัวอักษรของแต่ละ Font จะไม่ค่อยตรงกรอบและตำแหน่งที่ต้องการ ดังนั้นคุณจึงต้องมีไฟล์นี้ในการปรับ config ของแต่ละตัวอักษร และในบางกรณีการปรับขนาดตัวอักษรก็อาจต้องปรับค่าใน Config พวกนี้ด้วย
 
-[config/sriracha-regular.json](config/sriracha-regular.json)
+[config/sriracha-regular.json](https://github.com/Onyx-Nostalgia/DFF-TH-glyphs/blob/main/config/sriracha-regular.json)
 
 ```json
 {
@@ -106,7 +109,7 @@ python tools/dff_analysis.py data/English/RazNotebook_lin.dff
 ผลลัพธ์จะเก็บไว้ใน **_/docs/DFF binary structure/{DFF_FILENAME}_** 
 
 เช่น
-[/docs/DFF binary structure/RazNotebook_lin](/docs/DFF%20binary%20structure/RazNotebook_lin/)
+[/docs/DFF binary structure/RazNotebook_lin](https://github.com/Onyx-Nostalgia/DFF-TH-glyphs/tree/main/docs/DFF%20binary%20structure/RazNotebook_lin)
 
 ### display json mapping
 กรณีต้องการทราบว่า Json ที่ได้จากการ unpack font เป็นตัวอักษรใด หรือ coord เชื่อมกับ ascii code ใด แบบให้ดูง่ายๆ
