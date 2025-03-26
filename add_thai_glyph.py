@@ -43,7 +43,7 @@ def draw_hide_dot(draw, xy, char, font):
     w = dot_x2 - dot_x1
     h = dot_y2 - dot_y1
     if any(top_char in char for top_char in "ำ"):  # case top vowels
-        draw.rectangle((x1, y2 - h, x1 + w, y2 + h), fill="black")
+        draw.rectangle((x1, y2 - h -1, x1 + w, y2 + h), fill="black")
 
 
 def get_char_size(draw_char, font):
@@ -69,6 +69,7 @@ def append_thai_glyphs(
     json_path,
     new_json_path,
     is_show_box=False,
+    config=None,
 ):
     img = Image.open(image_path)
     font = ImageFont.truetype(font_path, font_size)
@@ -77,7 +78,7 @@ def append_thai_glyphs(
     max_height = 0
     glyph_coordinates = []
     thai_ascii_codes = thai_to_ascii(text)
-    adjust = get_adjust(font_path)
+    adjust = get_adjust(font_path,config)
 
     for char in text:
         draw_char = char
@@ -210,12 +211,17 @@ def update_json_file(json_path, new_json_path, glyph_coordinates, adjust):
         json.dump(data, f, indent=4, ensure_ascii=False)
 
 
-def get_adjust(font_path):
+def get_adjust(font_path, config=None):
+    if config:
+        with open(config, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        print("Load config from:", config)
+        return data
     font_name = os.path.splitext(os.path.basename(font_path))[0].lower()
-    print(font_name)
     for s in [" ", "_"]:
         font_name = font_name.replace(s, "-")
     json_path = f"config/{font_name}.json"
+    print("Load config from:", json_path)
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
     return data
@@ -230,7 +236,7 @@ def get_vertical_offset(char, adjust):
     default_vertical_offset = {
         "่๋๊้์": [25, 26, 27],  # Top vowels and tone mark
         "ีืิึ็ั": [24],  # Top vowels
-        "ุู": [5],  # Bottom vowels
+        "ุู": [4],  # Bottom vowels
         "ไใโ": [26, 27, 28],  # Tall vowels
         "ปฝฬฟำ": [24],  # Tall Char and vowels
     }
@@ -241,7 +247,9 @@ def get_vertical_offset(char, adjust):
     return random.choice([18, 19])
 
 
-def add_thai_glyph(bmp_path, json_path, font_path, font_size=32, is_show_box=False):
+def add_thai_glyph(
+    bmp_path, json_path, font_path, font_size=32, is_show_box=False, config=None
+):
     filename = os.path.splitext(os.path.basename(bmp_path))[0].split(".")[0]
     new_name = f"data/Thai/{filename}_with_thai_glyphs"
     output_path = f"{new_name}.bmp"
@@ -262,6 +270,7 @@ def add_thai_glyph(bmp_path, json_path, font_path, font_size=32, is_show_box=Fal
         json_path,
         new_json_path,
         is_show_box,
+        config,
     )
 
 
@@ -283,7 +292,13 @@ File will save in data/Thai/*_with_thai_glyphs.json & data/Thai/*_with_thai_glyp
     arg_parser.add_argument("font_path")
     arg_parser.add_argument("--font-size", type=int, default=26)
     arg_parser.add_argument("--show-box", action="store_true", default=False)
+    arg_parser.add_argument("--config", type=str)
     args = arg_parser.parse_args()
     add_thai_glyph(
-        args.bmp_path, args.json_path, args.font_path, args.font_size, args.show_box
+        args.bmp_path,
+        args.json_path,
+        args.font_path,
+        args.font_size,
+        args.show_box,
+        args.config,
     )
