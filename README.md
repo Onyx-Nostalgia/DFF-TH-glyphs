@@ -24,17 +24,29 @@ python tools/create_thai_glyph_config.py Sriracha-Regular.ttf
 3. ✏️ Add Thai characters to the existing BMP and JSON files. This step may require adjusting the character positions to fit properly.
 ```bash
 python add_thai_glyph.py data/English/bagel_lin.dff.bmp  data/English/bagel_lin.dff.json Sriracha-Regular.ttf
-```
-Similarly for `RazNotebook_lin`
-```bash
+
 python add_thai_glyph.py data/English/RazNotebook_lin.dff.bmp  data/English/RazNotebook_lin.dff.json Sriracha-Regular.ttf
+
+python add_thai_glyph.py data/English/Tahoma_lin.dff.bmp data/English/Tahoma_lin.dff.json Sriracha-Regular.ttf --font-size 18 --config config/sriracha-regular-small.json
+
+python add_thai_glyph.py data/English/Arial_lin.dff.bmp data/English/Arial_lin.dff.json Sriracha-Regular.ttf --font-size 16 --config config/sriracha-regular-small.json
 ```
+Or use the command
+```bash
+script/add_thai_glyph.sh
+```
+> [!Important]
+>❗ If you store the font elsewhere, update the path in [script/add_thai_glyph.sh](/script/add_thai_glyph.sh) to match the path on your machine.
+
+> [!NOTE]
+> If you encounter permission issues, try using `chmod +x script/*` and rerun the command.
+
 4. 📦 Once the BMP and JSON files with Thai characters are ready, pack them into DFF using the command
 ```bash
 script/pack_font.sh
 ``` 
 > [!Important]
-> * ❗ Don't forget to update the `/path/of/file/Games/psychonauts/` in [[script/pack_font.sh](https://github.com/Onyx-Nostalgia/DFF-TH-glyphs/tree/main/script/pack_font.sh)] to match the game path on your machine.
+> * ❗ Don't forget to update `/path/of/file/Games/psychonauts/` in [script/pack_font.sh](/script/pack_font.sh) to match the game path on your machine.
 > * 💾 It's recommended to backup the game's DFF files before proceeding.
 
 > [!NOTE]
@@ -44,7 +56,7 @@ script/pack_font.sh
 6. 🕹️ Launch the game to test.
 
 ## 🖼️ Adding Thai characters to BMP and JSON files
-Example command
+Example command 
 
 ```bash
 python add_thai_glyph.py data/English/bagel_lin.dff.bmp data/English/bagel_lin.dff.json Sriracha-Regular.ttf
@@ -61,13 +73,21 @@ python add_thai_glyph.py data/English/bagel_lin.dff.bmp data/English/bagel_lin.d
 ```
 The resulting image will look like this
 
-![image](https://raw.githubusercontent.com/Onyx-Nostalgia/DFF-TH-glyphs/refs/heads/main/data/Thai/bagel_lin_with_thai_glyphs_show_box.bmp)
+![image](/data/Thai/bagel_lin_with_thai_glyphs_show_box.bmp)
+
+### --config
+Specify the Thai glyph config file (JSON) to use. The default is **`config/{font-name}.json`**
+```bash
+python add_thai_glyph.py data/English/Tahoma_lin.dff.bmp data/English/Tahoma_lin.dff.json Sriracha-Regular.ttf --font-size 18 --config config/sriracha-regular-small.json
+```
 
 ## 📝 Thai glyph config File
 
-Since each font's characters may not align perfectly, you need this file to adjust the configuration of each character. In some cases, When changing only the font size while retaining the same font, you may need to edit config as well.
+Since each font's characters may not align perfectly, you need this file to adjust the configuration of each character. In some cases, changing the font size while retaining the same font may require editing the config as well.
 
-[config/sriracha-regular.json](https://github.com/Onyx-Nostalgia/DFF-TH-glyphs/blob/main/config/sriracha-regular.json)
+The results will be saved in [config/](/config/)
+
+[config/sriracha-regular.json](/config/sriracha-regular.json)
 
 ```json
 {
@@ -98,6 +118,11 @@ To overwrite an existing file, use `-w`, `--overwrite`, or `--replace`.
 ```bash
 python tools/create_thai_glyph_config.py Sriracha-Regular.ttf -w
 ```
+#### --output
+To specify the output file name, use `-o` or `--output`.
+```bash
+python tools/create_thai_glyph_config.py Sriracha-Regular.ttf -o sriracha-regular-small.json
+```
 
 ## 🛠️ Additional Tools
 
@@ -110,7 +135,7 @@ python tools/dff_analysis.py data/English/RazNotebook_lin.dff
 The results will be saved in **_/docs/DFF binary structure/{DFF_FILENAME}_** 
 
 For example
-[/docs/DFF binary structure/RazNotebook_lin](https://github.com/Onyx-Nostalgia/DFF-TH-glyphs/tree/main/docs/DFF%20binary%20structure/RazNotebook_lin)
+[/docs/DFF binary structure/RazNotebook_lin](/docs/DFF%20binary%20structure/RazNotebook_lin)
 
 ### display json mapping
 To understand which character or coordinate corresponds to which ASCII code in the JSON file obtained from unpacking the font, use
@@ -128,9 +153,9 @@ glyph_id='171': _
 _ ascii_code=133 w=16 h=4 start_pos:(297,120) end_pos:(313, 124) base:(6,0)
 ```
 #### --mode
-There are two modes for displaying the results: `coord` (default) and `ascii`.
+There are two modes for displaying results: `coord` (default) and `ascii`.
 
-`--mode ascii` will produce the following output (ascii_map will have coord_arr with the default value of glyph_id=0 or 'a')
+`--mode ascii` will produce the following output (ascii_map will have coord_arr with default value glyph_id=0 or 'a')
 ```sh
 ascii_code='0': _a_ glyph_id=0 w=11 h=14 start_pos:(1,1) end_pos:(12, 15) base:(12,0)
 ascii_code='1': _a_ glyph_id=0 w=11 h=14 start_pos:(1,1) end_pos:(12, 15) base:(12,0)
@@ -145,5 +170,6 @@ ascii_code='255': _a_ glyph_id=0 w=11 h=14 start_pos:(1,1) end_pos:(12, 15) base
 ```
 
 ## 🥲 Limitations
-- Due to the lack of spacing adjustments for characters, Thai characters in the game may not display beautifully (each character will appear as a separate glyph). Therefore, vowels and tone marks that should be above or below consonants will appear next to them instead. 😭
+- Due to the lack of spacing adjustments for characters, Thai characters in the game may not display beautifully (each character will appear as a separate glyph). Therefore, vowels and tone marks that should be above or below consonants will appear next to them instead. 😭  
+  - ![alt text](<limit_1.png>)
 - If you enlarge the characters too much, causing the resulting BMP to exceed **512 x 256 px**, the game may not support and use it.
