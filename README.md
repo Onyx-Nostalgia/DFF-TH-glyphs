@@ -171,5 +171,5 @@ ascii_code='255': _a_ glyph_id=0 w=11 h=14 start_pos:(1,1) end_pos:(12, 15) base
 
 ## 🥲 Limitations
 - Due to the lack of spacing adjustments for characters, Thai characters in the game may not display beautifully (each character will appear as a separate glyph). Therefore, vowels and tone marks that should be above or below consonants will appear next to them instead. 😭  
-  - ![alt text](<limit_1.png>)
+  - ![alt text](<docs/limit_1.png>)
 - If you enlarge the characters too much, causing the resulting BMP to exceed **512 x 256 px**, the game may not support and use it.
